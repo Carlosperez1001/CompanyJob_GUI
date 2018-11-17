@@ -1,0 +1,26 @@
+/*Background Style*/
+.root {
+  -fx-background-color: rgba(62,100,119,1);
+}
+Pane{
+  -fx-background-color: rgba(93,150,178,1);
+}
+SplitPane{
+  -fx-border-color: white;
+  -fx-border-width: 5px;
+}
+
+
+Label, Text{
+  -fx-text-fill: White;
+}
+
+/*Button Style*/
+#JFXBTN{
+  -fx-background-color: FFCC47;
+  -fx-text-fill: white;
+  -fx-font-size: 20px;
+}
+#JFXBTN:hover{
+  -fx-background-color: F5C444;
+}
