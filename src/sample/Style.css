@@ -10,6 +10,9 @@ SplitPane{
   -fx-border-width: 5px;
 }
 
+.table-column{
+  -fx-pref-width:213px;
+}
 
 Label, Text{
   -fx-text-fill: White;

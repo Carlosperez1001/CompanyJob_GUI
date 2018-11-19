@@ -2,7 +2,6 @@
 
 <?import com.jfoenix.controls.JFXButton?>
 <?import com.jfoenix.controls.JFXTextField?>
-<?import java.net.URL?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.SplitPane?>
@@ -15,7 +14,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<VBox alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.FXML.HomeController">
+<VBox alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1000.0" stylesheets="@../Style.css" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.FXML.HomeController">
    <children>
       <Pane prefHeight="89.0" prefWidth="1021.0">
          <children>
@@ -24,7 +23,7 @@
                   <Font size="69.0" />
                </font>
             </Label>
-            <JFXButton id="JFXBTN" layoutX="830.0" layoutY="43.0" prefHeight="44.0" prefWidth="157.0" text="Search" />
+            <JFXButton id="JFXBTN" buttonType="RAISED" disable="true" layoutX="830.0" layoutY="43.0" prefHeight="44.0" prefWidth="157.0" text="Search" />
             <JFXTextField layoutX="449.0" layoutY="52.0" prefHeight="25.0" prefWidth="373.0" />
          </children>
       </Pane>
@@ -59,7 +58,7 @@
                         <Font size="29.0" />
                      </font>
                   </Text>
-                  <JFXButton id="JFXBTN" fx:id="btn_Add" buttonType="RAISED" layoutX="11.0" layoutY="440.0" onAction="#addNewIndex" prefHeight="44.0" prefWidth="319.0" stylesheets="@../../Style.css" text="Add new index" textFill="WHITE" />
+                  <JFXButton id="JFXBTN" fx:id="btn_Add" buttonType="RAISED" layoutX="11.0" layoutY="440.0" onAction="#addNewIndex" prefHeight="44.0" prefWidth="319.0" text="Add new index" textFill="WHITE" />
                   <Label fx:id="lbl_Error" layoutX="14.0" layoutY="379.0" prefHeight="45.0" prefWidth="319.0" textAlignment="CENTER">
                      <font>
                         <Font size="24.0" />
@@ -69,15 +68,11 @@
             <Pane prefHeight="200.0" prefWidth="200.0">
                <children>
                   <TableView fx:id="TView_Company" prefHeight="447.0" prefWidth="641.0" />
-                  <JFXButton id="JFXBTN" disable="true" layoutX="247.0" layoutY="452.0" prefHeight="44.0" prefWidth="197.0" text="Remove Index" />
-                  <JFXButton id="JFXBTN" disable="true" layoutX="450.0" layoutY="452.0" prefHeight="44.0" prefWidth="187.0" text="Select Index" />
+                  <JFXButton id="JFXBTN" fx:id="btn_Remove" buttonType="RAISED" layoutX="247.0" layoutY="452.0" onAction="#removeIndex" prefHeight="44.0" prefWidth="197.0" text="Remove Index" />
+                  <JFXButton id="JFXBTN" buttonType="RAISED" disable="true" layoutX="450.0" layoutY="452.0" onAction="#removeIndex" prefHeight="44.0" prefWidth="187.0" text="Select Index" />
                </children>
             </Pane>
          </items>
       </SplitPane>
    </children>
-   <stylesheets>
-      <URL value="@../../Style.css" />
-      <URL value="@../Style.css" />
-   </stylesheets>
 </VBox>

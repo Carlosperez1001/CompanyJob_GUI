@@ -18,16 +18,18 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableColumn.CellDataFeatures;
 import javafx.scene.control.TableView;
 import javafx.util.Callback;
+import sample.Company;
 
 public class HomeController implements Initializable {
   //Set up Table col titles text
   private final String[] TableCOL_Names = {"Company", "Name", "HQ Location"};
   private ObservableList<ObservableList> data;
-  @FXML private TableView TView_Company;
+  @FXML private TableView<ObservableList> TView_Company;
   @FXML private JFXTextField txtFl_CName;
   @FXML private JFXTextField txtFl_CCEO;
   @FXML private JFXTextField txtFl_CLocation;
   @FXML private JFXButton btn_Add;
+  @FXML private JFXButton btn_Remove;
   @FXML private Label lbl_Error;
 
   /*btn_add clicked.
@@ -36,50 +38,82 @@ public class HomeController implements Initializable {
   * Reset Tableview
   */
   public void addNewIndex() {
+    //Check fields are filled
     if (txtFl_CName.getText().isEmpty() || txtFl_CCEO.getText().isEmpty() || txtFl_CLocation
         .getText().isEmpty()) {
       lbl_Error.setText("[Please fill out the form]");
+
     } else {
+
       try {
         lbl_Error.setText("");
-        Connection conn;
-        conn = DBConnect.connect();
+        //Prepare Connection and SQL STATEMENT
+        Connection conn = DBConnect.connect();
         String sql = "INSERT INTO COMPANY(C_NAME, C_CEO, C_LOCATION)" +
             "VALUES (?,?,?)";
+
         PreparedStatement statement = conn.prepareStatement(sql);
         statement.setString(1, txtFl_CName.getText());
         statement.setString(2, txtFl_CCEO.getText());
         statement.setString(3, txtFl_CLocation.getText());
         statement.executeUpdate();
-        System.out.println("what");
+
         setUpTable();
         conn.close();
 
       } catch (Exception e) {
-        System.out.println("Error");
         System.err.println(e.getMessage());
       }
     }
   }
 
+  public void removeIndex() {
+    //Create String from selected table row
+    String selectedIndex = (TView_Company.getSelectionModel().getSelectedItem().toString());
+    selectedIndex =selectedIndex.substring(1,selectedIndex.indexOf(','));
+    System.out.println("Remove: "+selectedIndex);
+
+    try {
+      lbl_Error.setText("");
+      //Prepare Connection and SQL STATEMENT
+      Connection conn = DBConnect.connect();
+      String sql = "DELETE FROM COMPANY "
+          + "WHERE C_NAME = ?";
+     PreparedStatement statement = conn.prepareStatement(sql);
+     statement.setString(1,selectedIndex);
+     statement.executeUpdate();
+
+     setUpTable();
+     conn.close();
+
+    } catch (Exception e) {
+
+      System.err.println(e.getMessage());
+    }
+  }
 
   public void initialize(URL url, ResourceBundle resources) {
-    System.out.println("Hi");
     setUpTable();
+    TView_Company.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
+      if (newSelection != null) {
+
+        System.out.println("Table select:" +newSelection);
+      }
+    });
+      //Table row select Listener
+
   }
 
   public void setUpTable() {
     //Clear entire table before updating
     TView_Company.getItems().clear();
     TView_Company.getColumns().clear();
-    System.out.println("build");
-
-    Connection conn;
     data = FXCollections.observableArrayList();
+
     try {
-      conn = DBConnect.connect();
+      Connection conn = DBConnect.connect();
       String SQL = "SELECT * from COMPANY";
-      //ResultSet
+
       ResultSet rs = conn.createStatement().executeQuery(SQL);
 
       for (int i = 0; i < rs.getMetaData().getColumnCount(); i++) {
@@ -91,10 +125,7 @@ public class HomeController implements Initializable {
                 return new SimpleStringProperty(param.getValue().get(j).toString());
               }
             });
-
         TView_Company.getColumns().addAll(col);
-        System.out.println("Column [" + i + "] ");
-
       }
 
       while (rs.next()) {
@@ -102,13 +133,14 @@ public class HomeController implements Initializable {
         for (int i = 1; i <= rs.getMetaData().getColumnCount(); i++) {
           row.add(rs.getString(i));
         }
-        System.out.println("Row added " + row);
         data.add(row);
       }
+
       conn.close();
 
       // Add To TableView
       TView_Company.setItems(data);
+
     } catch (Exception e) {
       e.printStackTrace();
       System.out.println("Error on Building Data");
