@@ -4,7 +4,7 @@ It is currently a work in progress, however you are able to organize your choose
 
 Future plans:
 
--Add a new table for each company showing the postions offered.
+-Add a new table for each company showing the positions offered.
 
 -Add a search function.
 
