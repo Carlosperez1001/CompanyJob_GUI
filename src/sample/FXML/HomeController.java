@@ -20,6 +20,17 @@ import javafx.scene.control.TableView;
 import javafx.util.Callback;
 import sample.Company;
 
+/******************************************************************************
+ * File: HomeController.java
+ * Author: Carlos Perez
+ *Handles I/O for the homeScreen.fxml GUI
+ * Connects to 'CompanyDB'  database by using the 'DBconnect' class.
+ *
+ * [Current Function]
+ * Add/Remove index
+ ******************************************************************************/
+
+
 public class HomeController implements Initializable {
   //Set up Table col titles text
   private final String[] TableCOL_Names = {"Company", "Name", "HQ Location"};
@@ -58,6 +69,7 @@ public class HomeController implements Initializable {
         statement.setString(3, txtFl_CLocation.getText());
         statement.executeUpdate();
 
+        //Update table
         setUpTable();
         conn.close();
 
@@ -68,8 +80,9 @@ public class HomeController implements Initializable {
   }
 
   public void removeIndex() {
-    //Create String from selected table row
+    //Get & Create String from selected table row.
     String selectedIndex = (TView_Company.getSelectionModel().getSelectedItem().toString());
+    //Format string to only get the Company Name.
     selectedIndex =selectedIndex.substring(1,selectedIndex.indexOf(','));
     System.out.println("Remove: "+selectedIndex);
 
@@ -83,39 +96,38 @@ public class HomeController implements Initializable {
      statement.setString(1,selectedIndex);
      statement.executeUpdate();
 
+     //Update table
      setUpTable();
      conn.close();
 
     } catch (Exception e) {
-
       System.err.println(e.getMessage());
     }
   }
 
   public void initialize(URL url, ResourceBundle resources) {
-    setUpTable();
-    TView_Company.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
-      if (newSelection != null) {
+      setUpTable();
 
-        System.out.println("Table select:" +newSelection);
-      }
-    });
-      //Table row select Listener
+      //Table row selected listener
+      TView_Company.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
+        if (newSelection != null) {
+          System.out.println("Table select:" +newSelection);
+        }
+      });
 
   }
 
   public void setUpTable() {
-    //Clear entire table before updating
-    TView_Company.getItems().clear();
-    TView_Company.getColumns().clear();
+
     data = FXCollections.observableArrayList();
 
     try {
+      //Prepare Connection and SQL STATEMENT
       Connection conn = DBConnect.connect();
       String SQL = "SELECT * from COMPANY";
-
       ResultSet rs = conn.createStatement().executeQuery(SQL);
 
+      //Dynamical make table columns)
       for (int i = 0; i < rs.getMetaData().getColumnCount(); i++) {
         final int j = i;
         TableColumn col = new TableColumn(TableCOL_Names[i]);
@@ -125,6 +137,7 @@ public class HomeController implements Initializable {
                 return new SimpleStringProperty(param.getValue().get(j).toString());
               }
             });
+
         TView_Company.getColumns().addAll(col);
       }
 

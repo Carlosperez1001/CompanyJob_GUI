@@ -1,16 +1,23 @@
 package SQL;
 
+/******************************************************************************
+ * File: DBConnection.java
+ * Author: Carlos Perez
+ *Handles Derby Database Connection
+ ******************************************************************************/
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
+
+
 public class DBConnect {
 
   protected static Connection conn;
-  private static String url = "jdbc:derby:C:\\Users\\Carlos Perez\\OneDrive - Florida Gulf Coast "
-      + "University\\COP 3003\\CompanyDatabase\\lib\\CompanyDB";
-  private static String user = "Deitel";
-  private static String pass = "Deitel";
+  private static String url = "jdbc:derby:lib\\CompanyDB";
+  private static String user = "deitel";
+  private static String pass = "deitel";
 
   public static Connection connect() throws SQLException {
     try{
@@ -27,6 +34,7 @@ public class DBConnect {
     conn = DriverManager.getConnection(url,user,pass);
     return conn;
   }
+
   public static Connection getConnection() throws SQLException, ClassNotFoundException{
     if(conn !=null && !conn.isClosed())
       return conn;
