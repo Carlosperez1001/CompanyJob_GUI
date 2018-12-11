@@ -1,6 +1,6 @@
 # CompanyJob GUI
-This program will help users visualize the amount of companies that offer technical careers around the globe.
-It is currently a work in progress, however you are able to organize the listed companies by adding or removing them from the embedded database.
+This program will help users visualize the amount of companies that offer technical careers around the globe. It will provide additional information about the company such as their CEO and headquarter location. 
+It is currently a work in progress, however you are able to organize the listed companies by adding or removing them from the embedded database. 
 
 
 ## Demonstration
