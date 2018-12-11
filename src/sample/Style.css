@@ -10,9 +10,6 @@ SplitPane{
   -fx-border-width: 5px;
 }
 
-.table-column{
-  -fx-pref-width:213px;
-}
 
 Label, Text{
   -fx-text-fill: White;
@@ -20,10 +17,61 @@ Label, Text{
 
 /*Button Style*/
 #JFXBTN{
-  -fx-background-color: FFCC47;
+  -fx-background-color: #FFCC47;
   -fx-text-fill: white;
   -fx-font-size: 20px;
 }
 #JFXBTN:hover{
   -fx-background-color: F5C444;
 }
+/*******************************************************************************
+ *                                                                             *
+ * Tableview	                                                               *
+ *                                                                             *
+ ******************************************************************************/
+.table-column{
+  -fx-pref-width:213px;
+}
+
+.table-row-cell{
+  -fx-background-color: -fx-table-cell-border-color, #F0C07F;
+  -fx-background-insets: 0, 0 0 1 0;
+  -fx-padding: 0.0em; /* 0 */
+}
+.table-view .column-header,
+.table-view .column-header .filler,
+.table-view .column-header-background .filler {
+  -fx-background-color: #FFCC87;
+  -fx-text-fill: white;
+
+}
+.column-header{
+  -fx-border-width: 2px ;
+  -fx-border-color: grey ;
+}
+.table-row-cell:odd{
+  -fx-background-color: -fx-table-cell-border-color, #FFCC87;
+  -fx-background-insets: 0, 0 0 1 0;
+  -fx-padding: 0.0em; /* 0 */
+}
+.table-row-cell:hover{
+  -fx-background-color:  rgba(93,150,178,1);
+  -fx-text-fill: black;
+}
+.table-row-cell:selected {
+  -fx-text-fill: white;
+  -fx-background-color: #3F5866;
+  -fx-background-insets: 0;
+  -fx-background-radius: 1;
+}
+
+/*******************************************************************************
+ *                                                                             *
+ * Tableview                                                                   *
+ *                                                                             *
+ ******************************************************************************/
+/*******************************************************************************
+ *                                                                             *
+ * Tableview                                                                   *
+ *                                                                             *
+ ******************************************************************************/

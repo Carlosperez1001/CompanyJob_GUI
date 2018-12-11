@@ -23,8 +23,8 @@
                   <Font size="69.0" />
                </font>
             </Label>
-            <JFXButton id="JFXBTN" buttonType="RAISED" disable="true" layoutX="830.0" layoutY="43.0" prefHeight="44.0" prefWidth="157.0" text="Search" />
-            <JFXTextField layoutX="449.0" layoutY="52.0" prefHeight="25.0" prefWidth="373.0" />
+            <JFXButton id="JFXBTN" buttonType="RAISED" layoutX="830.0" layoutY="43.0" onAction="#selectIndex" prefHeight="44.0" prefWidth="157.0" text="Search" />
+            <JFXTextField fx:id="txtFl_SearchQuery" layoutX="449.0" layoutY="52.0" prefHeight="25.0" prefWidth="373.0" />
          </children>
       </Pane>
       <SplitPane dividerPositions="0.34769539078156314" prefHeight="453.0" prefWidth="1021.0" stylesheets="@../Style.css" VBox.vgrow="ALWAYS">

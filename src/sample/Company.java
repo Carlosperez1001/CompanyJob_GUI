@@ -1,53 +1,53 @@
 package sample;
 
-import javafx.collections.ObservableList;
 
-public class Company  {
-public String CName;
-public  String CCEO;
-public String CLocation;
-public Company(){
-  CName = "";
-  CCEO= "";
-  CLocation = "";
+public class Company {
 
-}
-  public Company(String CName, String CCEO, String CLocation) {
-    this.CName = CName;
-    this.CCEO = CCEO;
-    this.CLocation = CLocation;
-  }
+  private String cName;
+  private String cCeo;
+  private String cLocation;
+  private long cId;
 
-  public void setCName(String CName) {
-    this.CName = CName;
-  }
-
-  public void setCCEO(String CCEO) {
-    this.CCEO = CCEO;
-  }
-
-  public void setCLocation(String CLocation) {
-    this.CLocation = CLocation;
+  public Company(String cName, String cCeo, String cLocation, long cId) {
+    this.cName = cName;
+    this.cCeo = cCeo;
+    this.cLocation = cLocation;
+    this.cId = cId;
   }
 
   public String getCName() {
-    return CName;
+    return cName;
   }
 
-  public String getCCEO() {
-    return CCEO;
+  public void setCName(String cName) {
+    this.cName = cName;
   }
+
+
+  public String getCCeo() {
+    return cCeo;
+  }
+
+  public void setCCeo(String cCeo) {
+    this.cCeo = cCeo;
+  }
+
 
   public String getCLocation() {
-    return CLocation;
+    return cLocation;
   }
 
-  @Override
-  public String toString() {
-    return "Company{" +
-        "CName='" + CName + '\'' +
-        ", CCEO='" + CCEO + '\'' +
-        ", CLocation='" + CLocation + '\'' +
-        '}';
+  public void setCLocation(String cLocation) {
+    this.cLocation = cLocation;
   }
+
+
+  public long getCId() {
+    return cId;
+  }
+
+  public void setCId(long cId) {
+    this.cId = cId;
+  }
+
 }

@@ -6,7 +6,7 @@ import java.sql.*;
 public class SQL_Test {
 
     public static void main(String args[]) {
-      final String DATABASE_URL = "jdbc:derby:C:\\Users\\Carlos Perez\\OneDrive - Florida Gulf Coast University\\COP 3003\\CompanyDatabase\\lib\\CompanyDB";
+      final String DATABASE_URL = "jdbc:derby:lib\\CompanyDB";
        final String SELECT_QUERY = "SELECT C_NAME, C_CEO, C_LOCATION  FROM COMPANY";
 
        try {

@@ -18,7 +18,6 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableColumn.CellDataFeatures;
 import javafx.scene.control.TableView;
 import javafx.util.Callback;
-import sample.Company;
 
 /******************************************************************************
  * File: HomeController.java
@@ -33,14 +32,16 @@ import sample.Company;
 
 public class HomeController implements Initializable {
   //Set up Table col titles text
-  private final String[] TableCOL_Names = {"Company", "Name", "HQ Location"};
+  private final String[] TableCOL_Names = {"Organization", "CEO", "HQ Location","Test"};
   private ObservableList<ObservableList> data;
   @FXML private TableView<ObservableList> TView_Company;
   @FXML private JFXTextField txtFl_CName;
   @FXML private JFXTextField txtFl_CCEO;
   @FXML private JFXTextField txtFl_CLocation;
+  @FXML private JFXTextField txtFl_SearchQuery;
   @FXML private JFXButton btn_Add;
   @FXML private JFXButton btn_Remove;
+  @FXML private JFXButton btn_Search;
   @FXML private Label lbl_Error;
 
   /*btn_add clicked.
@@ -48,14 +49,37 @@ public class HomeController implements Initializable {
   *Connects to db and inserts new index
   * Reset Tableview
   */
+
+  //Search
+  public void selectIndex(){
+    if (txtFl_CName.getText().isEmpty()){
+
+    }
+    else{
+      try {
+        lbl_Error.setText("");
+        //Prepare Connection and SQL STATEMENT
+        Connection conn = DBConnect.connect();
+        String sql = "SELECT * FROM %s WHERE name = ?";
+        PreparedStatement statement = conn.prepareStatement(sql);
+        statement.setString(1, txtFl_SearchQuery.getText());
+        statement.executeUpdate();
+        //Update table
+        setUpTable();
+        conn.close();
+      } catch (Exception e) {
+        System.err.println(e.getMessage());
+      }
+    }
+  }
+
+  //
   public void addNewIndex() {
     //Check fields are filled
     if (txtFl_CName.getText().isEmpty() || txtFl_CCEO.getText().isEmpty() || txtFl_CLocation
         .getText().isEmpty()) {
       lbl_Error.setText("[Please fill out the form]");
-
     } else {
-
       try {
         lbl_Error.setText("");
         //Prepare Connection and SQL STATEMENT
@@ -68,7 +92,6 @@ public class HomeController implements Initializable {
         statement.setString(2, txtFl_CCEO.getText());
         statement.setString(3, txtFl_CLocation.getText());
         statement.executeUpdate();
-
         //Update table
         setUpTable();
         conn.close();
@@ -82,7 +105,7 @@ public class HomeController implements Initializable {
   public void removeIndex() {
     //Get & Create String from selected table row.
     String selectedIndex = (TView_Company.getSelectionModel().getSelectedItem().toString());
-    //Format string to only get the Company Name.
+    //Format string to only get the
     selectedIndex =selectedIndex.substring(1,selectedIndex.indexOf(','));
     System.out.println("Remove: "+selectedIndex);
 
@@ -107,26 +130,25 @@ public class HomeController implements Initializable {
 
   public void initialize(URL url, ResourceBundle resources) {
       setUpTable();
-
       //Table row selected listener
       TView_Company.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
         if (newSelection != null) {
           System.out.println("Table select:" +newSelection);
-        }
-      });
+        }      });
 
   }
 
   public void setUpTable() {
+    //Reset table
+    TView_Company.getSelectionModel().clearSelection();
 
     data = FXCollections.observableArrayList();
-
-    try {
+    data.clear();
+    try{
       //Prepare Connection and SQL STATEMENT
       Connection conn = DBConnect.connect();
       String SQL = "SELECT * from COMPANY";
       ResultSet rs = conn.createStatement().executeQuery(SQL);
-
       //Dynamical make table columns)
       for (int i = 0; i < rs.getMetaData().getColumnCount(); i++) {
         final int j = i;
@@ -140,7 +162,6 @@ public class HomeController implements Initializable {
 
         TView_Company.getColumns().addAll(col);
       }
-
       while (rs.next()) {
         ObservableList<String> row = FXCollections.observableArrayList();
         for (int i = 1; i <= rs.getMetaData().getColumnCount(); i++) {
@@ -148,9 +169,7 @@ public class HomeController implements Initializable {
         }
         data.add(row);
       }
-
       conn.close();
-
       // Add To TableView
       TView_Company.setItems(data);
 
@@ -160,5 +179,6 @@ public class HomeController implements Initializable {
     }
 
   }
+
 
 }

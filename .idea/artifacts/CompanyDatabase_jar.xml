@@ -1,0 +1,10 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="CompanyDatabase:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/CompanyDatabase_jar</output-path>
+    <root id="archive" name="CompanyDatabase.jar">
+      <element id="module-output" name="CompanyDatabase" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/lib/derby.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/lib/jfoenix-8.0.7.jar" path-in-jar="/" />
+    </root>
+  </artifact>
+</component>
