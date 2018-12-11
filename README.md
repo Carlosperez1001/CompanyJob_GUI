@@ -4,9 +4,9 @@ It is currently a work in progress, however you are able to organize your choice
 
 ## Demonstration
 ### Adding index
-
+![Alt Text](https://github.com/Carlosperez1001/CompanyJob_GUI/blob/master/Readme_Res/Demo1.gif)
 ### Removing index 
-
+![Alt Text](https://github.com/Carlosperez1001/CompanyJob_GUI/blob/master/Readme_Res/Demo2.gif)
 ## Built With
 
 * [Apache Derby](https://db.apache.org/derby/)
