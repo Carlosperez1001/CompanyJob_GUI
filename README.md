@@ -1,17 +1,21 @@
-# CompanyJob_GUI
+# CompanyJobGUI
 This program will help users visualize the amount of companies that offer technical carrers around the globe.
 It is currently a work in progress, however you are able to organize your choices by adding or removing companies from the embedded  database. 
 
-Future plans:
+## Demonstration
+### Adding index
 
--Add a new table for each company showing the positions offered.
+### Removing index 
 
--Add a search function.
+## Built With
+* [Apache Derby](https://db.apache.org/derby/)
+* [IntelliJ IDEA 2018.2.2](https://www.jetbrains.com/idea/)
+* [SceneBuilder](https://gluonhq.com/products/scene-builder/)
+* [Jfoenix Material Design Library](http://www.jfoenix.com/)
+* [Java 8](https://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html)
 
--Improve visuals
+## Future plans:
 
-...
-
-[Demo]
-
-(https://gyazo.com/4cad8a96dce050cf46a9fa71579b68e0)
+* Add a new table for each company showing the positions offered.
+* Add a search function.
+* Improve visuals
