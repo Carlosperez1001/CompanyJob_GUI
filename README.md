@@ -1,6 +1,6 @@
-# CompanyJobGUI
+# CompanyJob GUI
 This program will help users visualize the amount of companies that offer technical carrers around the globe.
-It is currently a work in progress, however you are able to organize your choices by adding or removing companies from the embedded  database. 
+It is currently a work in progress, however you are able to organize your choices of companies by adding or removing them from the embedded database.
 
 ## Demonstration
 ### Adding index
@@ -8,6 +8,7 @@ It is currently a work in progress, however you are able to organize your choice
 ### Removing index 
 
 ## Built With
+
 * [Apache Derby](https://db.apache.org/derby/)
 * [IntelliJ IDEA 2018.2.2](https://www.jetbrains.com/idea/)
 * [SceneBuilder](https://gluonhq.com/products/scene-builder/)
